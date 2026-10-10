@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.config import settings
 
 app = FastAPI(
     title="ExpenseAI",
@@ -9,4 +10,8 @@ app = FastAPI(
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "app": settings.app_name,
+        "enviroment": settings.app_env,
+    }
